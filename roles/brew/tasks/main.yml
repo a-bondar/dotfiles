@@ -1,0 +1,56 @@
+---
+- name: Update brew daily
+  cron:
+      name: "brew autoupdate"
+      special_time: "daily"
+      job: "/usr/local/bin/brew update"
+
+- name: Cleanup brew
+  cron:
+      name: "brew cleanup"
+      special_time: "monthly"
+      job: "/usr/local/bin/brew cleanup"
+
+- name: Install packages from Homebrew
+  homebrew:
+      state: present
+      name:
+          - node
+          - python
+          - python3
+          - yarn
+          - fish
+
+- name: Install Brew Cask packages
+  ignore_errors: yes
+  homebrew_cask:
+      state: present
+      name:
+          - adguard
+          - appcleaner
+          - boostnote
+          - docker
+          - bitwarden
+          - google-backup-and-sync
+          - firefox
+          - firefox-developer-edition
+          - google-chrome
+          - gog-galaxy
+          - the-unarchiver
+          - homebrew/cask-fonts/font-firacode-nerd-font
+          - homebrew/cask-fonts/font-firacode-nerd-font-mono
+          - homebrew/cask-fonts/font-firamono-nerd-font
+          - homebrew/cask-fonts/font-firamono-nerd-font-mono
+          - nordvpn
+          - omnidisksweeper
+          - jetbrains-toolbox
+          - slack
+          - skype
+          - transmission
+          - iina
+          - spotify
+          - telegram
+          - vagrant
+          - visual-studio-code
+          - virtualbox
+          - virtualbox-extension-pack
